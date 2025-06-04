@@ -1,0 +1,391 @@
+[
+    {
+      "name": "Valid request for TMP and P",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.AwsTenMinutes",
+              "Settings": {
+                "LocationCodes": ["260"],
+                "VariableCodes": ["P", "TMP"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "TMP"
+      }
+    },
+    {
+      "name": "Missing VariableCodes",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.AwsTenMinutes",
+              "Settings": {
+                "LocationCodes": ["260"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": 400,
+        "body_contains": "VariableCodes"
+      }
+    },
+    {
+      "name": "TMP only with CSV export",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.AwsTenMinutes",
+              "Settings": {
+                "LocationCodes": ["260"],
+                "VariableCodes": ["TMP"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            }
+          ],
+          "Exporter": {
+            "DataFormatCode": "csv",
+            "Settings": {
+              "Formatting": "Default"
+            }
+          }
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "TMP"
+      }
+    },
+    {
+      "name": "Synoptic Data - Historical",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.Synops",
+              "Settings": {
+                "LocationCodes": ["260"],
+                "VariableCodes": ["P", "TMP", "RH"],
+                "StartDate": "20240101000000",
+                "EndDate": "20240102000000"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "TMP"
+      }
+    },
+    {
+      "name": "Get All Data Sources",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/entity/datasources/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {}
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "DataSourceCode"
+      }
+    },
+    {
+      "name": "Get Specific Data Sources",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/entity/datasources/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "DataSourceCodes": ["Knmi.AwsTenMinutes", "Knmi.Synops"]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "Knmi.AwsTenMinutes"
+      }
+    },
+    {
+      "name": "Get Variables for KNMI AWS",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/entity/variables/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "DataSourceCodes": ["Knmi.AwsTenMinutes"]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "VariableCode"
+      }
+    },
+    {
+      "name": "Get KNMI Station Locations",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/entity/locations/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "DataSourceCodes": ["Knmi.AwsTenMinutes"]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "LocationCode"
+      }
+    },
+    {
+      "name": "Multiple Locations Time Series",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.AwsTenMinutes",
+              "Settings": {
+                "LocationCodes": ["260", "280", "370"],
+                "VariableCodes": ["P"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "LocationCode"
+      }
+    },
+    {
+      "name": "Invalid Data Source",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/entity/datasources/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "DataSourceCodes": ["NonExistent.DataSource"]
+        }
+      },
+      "expected": {
+        "status": 400,
+        "body_contains": "error"
+      }
+    },
+    {
+      "name": "Invalid Location Code",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.AwsTenMinutes",
+              "Settings": {
+                "LocationCodes": ["999999"],
+                "VariableCodes": ["P"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": 400,
+        "body_contains": "LocationCode"
+      }
+    },
+    {
+      "name": "Invalid Variable Code",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.AwsTenMinutes",
+              "Settings": {
+                "LocationCodes": ["260"],
+                "VariableCodes": ["INVALID_VAR"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": 400,
+        "body_contains": "VariableCode"
+      }
+    },
+    {
+      "name": "Filter Variables by Codes",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/entity/variables/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "VariableCodes": ["P", "TMP", "RH", "WindSpeed"]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "TMP"
+      }
+    },
+    {
+      "name": "Multi-Reader Request",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [
+            {
+              "DataSourceCode": "Knmi.AwsTenMinutes",
+              "Settings": {
+                "LocationCodes": ["260"],
+                "VariableCodes": ["P"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            },
+            {
+              "DataSourceCode": "Knmi.Synops",
+              "Settings": {
+                "LocationCodes": ["260"],
+                "VariableCodes": ["P"],
+                "StartDate": "20250526000000",
+                "EndDate": "20250527000000"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "Knmi"
+      }
+    },
+    {
+      "name": "Get Grid Definitions",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/entity/griddefinitions/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {}
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "GridDefinition"
+      }
+    },
+    {
+      "name": "KNMI Radar Composite - GeoTIFF Download",
+      "request": {
+        "method": "POST",
+        "url": "https://wiwb.hydronet.com/api/grids/get",
+        "headers": {
+          "Authorization": "Bearer {{token}}",
+          "Content-Type": "application/json"
+        },
+        "json": {
+          "Readers": [{
+            "DataSourceCode": "Knmi.International.Radar.Composite",
+            "Settings": {
+              "StartDate": "20250526120000",
+              "EndDate": "20250526120500",
+              "VariableCodes": ["P"]
+            }
+          }],
+          "Exporter": {
+            "DataFormatCode": "geotiff"
+          }
+        }
+      },
+      "expected": {
+        "status": 200,
+        "body_contains": "Binary file downloaded"
+      }
+    }
+  ]
+  
