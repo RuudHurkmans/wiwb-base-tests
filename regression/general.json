@@ -3,7 +3,7 @@
       "name": "Valid request for TMP and P",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -15,8 +15,8 @@
               "Settings": {
                 "LocationCodes": ["260"],
                 "VariableCodes": ["P", "TMP"],
-                "StartDate": "20250526000000",
-                "EndDate": "20250527000000"
+                "StartDate": "20240526000000",
+                "EndDate": "20240527000000"
               }
             }
           ]
@@ -31,7 +31,7 @@
       "name": "Missing VariableCodes",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -58,7 +58,7 @@
       "name": "TMP only with CSV export",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -92,7 +92,7 @@
       "name": "Synoptic Data - Historical",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -120,7 +120,7 @@
       "name": "Get All Data Sources",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/entity/datasources/get",
+        "url": "{{base_url}}/api/entity/datasources/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -136,7 +136,7 @@
       "name": "Get Specific Data Sources",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/entity/datasources/get",
+        "url": "{{base_url}}/api/entity/datasources/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -154,7 +154,7 @@
       "name": "Get Variables for KNMI AWS",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/entity/variables/get",
+        "url": "{{base_url}}/api/entity/variables/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -172,7 +172,7 @@
       "name": "Get KNMI Station Locations",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/entity/locations/get",
+        "url": "{{base_url}}/api/entity/locations/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -190,7 +190,7 @@
       "name": "Multiple Locations Time Series",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -218,7 +218,7 @@
       "name": "Invalid Data Source",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/entity/datasources/get",
+        "url": "{{base_url}}/api/entity/datasources/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -236,7 +236,7 @@
       "name": "Invalid Location Code",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -264,7 +264,7 @@
       "name": "Invalid Variable Code",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -292,7 +292,7 @@
       "name": "Filter Variables by Codes",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/entity/variables/get",
+        "url": "{{base_url}}/api/entity/variables/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -310,7 +310,7 @@
       "name": "Multi-Reader Request",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/timeseries/get",
+        "url": "{{base_url}}/api/timeseries/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -347,7 +347,7 @@
       "name": "Get Grid Definitions",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/entity/griddefinitions/get",
+        "url": "{{base_url}}/api/entity/griddefinitions/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"
@@ -363,7 +363,7 @@
       "name": "KNMI Radar Composite - GeoTIFF Download",
       "request": {
         "method": "POST",
-        "url": "https://wiwb.hydronet.com/api/grids/get",
+        "url": "{{base_url}}/api/grids/get",
         "headers": {
           "Authorization": "Bearer {{token}}",
           "Content-Type": "application/json"

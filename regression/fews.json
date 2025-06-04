@@ -1,0 +1,149 @@
+[
+  {
+    "name": "Get Variables for Knmi.International.Radar.Composite.Final.Reanalysis",
+    "request": {
+      "method": "POST",
+      "url": "{{base_url}}/api/entity/datasourcevariables/get",
+      "headers": {
+        "Authorization": "Bearer {{token}}",
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "DataSourceCodes": ["Knmi.International.Radar.Composite.Final.Reanalysis"]
+      }
+    },
+    "expected": {
+      "status": 200,
+      "body_contains": ""
+    }
+  },
+  {
+    "name": "Get Grid Definition by ID",
+    "request": {
+      "method": "POST",
+      "url": "{{base_url}}/api/entity/griddefinitions/get",
+      "headers": {
+        "Authorization": "Bearer {{token}}",
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "GridDefinitionIds": [1]
+      }
+    },
+    "expected": {
+      "status": 200,
+      "body_contains": ""
+    }
+  },
+  {
+    "name": "Get Grids for Knmi.International.Radar.Composite.Final.Reanalysis",
+    "request": {
+      "method": "POST",
+      "url": "{{base_url}}/api/grids/get",
+      "headers": {
+        "Authorization": "Bearer {{token}}",
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "Readers": [
+          {
+            "DataSourceCode": "Knmi.International.Radar.Composite.Final.Reanalysis",
+            "Settings": {
+              "Interval": {
+                "Type": "Seconds",
+                "Value": 86400,
+                "MinimumAggregationAvailability": 1.0
+              },
+              "StartDate": "20240930080000",
+              "EndDate": "20241003080000",
+              "VariableCodes": ["P"]
+            }
+          }
+        ],
+        "Exporter": {
+          "DataFormatCode": "netcdf4.cf1p6"
+        }
+      }
+    },
+    "expected": {
+      "status": 200,
+      "body_contains": ""
+    }
+  },
+  {
+    "name": "Get Ensemble Time Series for Knmi.RegionalEps",
+    "request": {
+      "method": "POST",
+      "url": "{{base_url}}/api/ensembletimeseries/get",
+      "headers": {
+        "Authorization": "Bearer {{token}}",
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "Readers": [
+          {
+            "DataSourceCode": "Knmi.RegionalEps",
+            "Settings": {
+              "Interval": {
+                "Type": "Seconds",
+                "Value": 21600
+              },
+              "ModelDate": "20250527000000",
+              "VariableCodes": ["TMP"],
+              "LocationCodes": ["06252"]
+            }
+          }
+        ],
+        "Exporter": {
+          "DataFormatCode": "hydronet.csv.simple",
+          "Settings": {
+            "DigitsToRound": 3
+          }
+        }
+      }
+    },
+    "expected": {
+      "status": 200,
+      "body_contains": ""
+    }
+  },
+  {
+    "name": "Get Timeseries for Knmi.Evaporation",
+    "request": {
+      "method": "POST",
+      "url": "{{base_url}}/api/timeseries/get",
+      "headers": {
+        "Authorization": "Bearer {{token}}",
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "Readers": [
+          {
+            "DataSourceCode": "Knmi.Evaporation",
+            "Interval": {
+              "Type": "Seconds",
+              "Value": 86400
+            },
+            "Settings": {
+              "StartDate": "20241001230000",
+              "EndDate": "20241002230000",
+              "VariableCodes": ["Evaporation"],
+              "LocationCodes": ["06260"],
+              "ReadQuality": false
+            }
+          }
+        ],
+        "Exporter": {
+          "DataFormatCode": "hydronet.csv.simple",
+          "Settings": {
+            "DigitsToRound": 3
+          }
+        }
+      }
+    },
+    "expected": {
+      "status": 200,
+      "body_contains": ""
+    }
+  }
+]
