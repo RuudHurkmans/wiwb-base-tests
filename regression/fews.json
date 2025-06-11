@@ -9,12 +9,95 @@
         "Content-Type": "application/json"
       },
       "json": {
-        "DataSourceCodes": ["Knmi.International.Radar.Composite.Final.Reanalysis"]
+        "DataSourceCodes": [
+          "Knmi.International.Radar.Composite.Final.Reanalysis"
+        ]
       }
     },
     "expected": {
       "status": 200,
-      "body_contains": ""
+      "body_contains": [
+        "DataSourceVariables",
+        "Variables",
+        "Units",
+        "DataSources",
+        "TimeZoneOffset"
+      ],
+      "expected_response": {
+        "DataSourceVariables": {
+          "2501": {
+            "DataSourceVariableId": 2501,
+            "VariableCode": "P",
+            "DataSourceCode": "Knmi.International.Radar.Composite.Final.Reanalysis",
+            "UnitCode": "MM",
+            "Name": "Precipitation",
+            "Code": "P",
+            "Description": "Neerslag",
+            "DataType": "Single",
+            "NoDataValue": -999.0,
+            "MathematicalType": "Summable",
+            "MeasurementType": "Period",
+            "State": 1,
+            "IsCumulative": true
+          }
+        },
+        "Variables": {
+          "P": {
+            "Name": "Precipitation",
+            "Code": "P",
+            "Description": "Neerslag",
+            "UnitCode": "MM",
+            "State": 1
+          }
+        },
+        "Units": {
+          "MM": {
+            "Name": "mm",
+            "Code": "MM"
+          }
+        },
+        "DataSources": {
+          "Knmi.International.Radar.Composite.Final.Reanalysis": {
+            "Name": "KNMI Internationaal Radar Composiet, final reanalysis",
+            "Code": "Knmi.International.Radar.Composite.Final.Reanalysis",
+            "Settings": {
+              "StoreInterval": "Days",
+              "AccumulationInterval": "Years",
+              "ChunkSizeX": 10,
+              "ChunkSizeY": 10,
+              "ChunkSizeTime": 1,
+              "Compression": true,
+              "DeflateLevel": 5,
+              "Time": {
+                "Interval": {
+                  "Type": "Minutes",
+                  "Value": 5
+                }
+              },
+              "Grid": {
+                "GridDefinitionId": 1
+              },
+              "MaximumDelay": {
+                "Type": "Months",
+                "Value": 2
+              },
+              "FileFormatId": 3
+            },
+            "StartDate": "20181231080000",
+            "EndDate": "20250510080000",
+            "LastDateWithData": "20250510080000",
+            "IsEnabled": true,
+            "AutoConnectVariables": false,
+            "TimeZoneOffset": "+0000",
+            "PrimaryStructureType": "Grid",
+            "DataProviderAssemblyId": 11,
+            "DataSourceGroupCode": "Knmi",
+            "LogCollectionId": 100108
+          }
+        },
+        "TimeZoneOffset": "+0000"
+      },
+      "content_type": "application/json"
     }
   },
   {
@@ -27,12 +110,59 @@
         "Content-Type": "application/json"
       },
       "json": {
-        "GridDefinitionIds": [1]
+        "GridDefinitionIds": [
+          1
+        ]
       }
     },
     "expected": {
       "status": 200,
-      "body_contains": ""
+      "body_contains": ["GridDefinitions", "Projections", "Extents"],
+      "expected_response": {
+        "GridDefinitions": {
+          "1": {
+            "GridDefinitionId": 1,
+            "Columns": 700,
+            "Rows": 765,
+            "CellWidth": 1.0000035,
+            "CellHeight": 1.0000048,
+            "Xll": 0.0,
+            "Yll": -4414.985672,
+            "Xur": 700.00245,
+            "Yur": -3649.982,
+            "Description": "Dutch radar grid",
+            "Name": "NL",
+            "ProjectionId": 9,
+            "StartColumn": 0,
+            "EndColumn": 699,
+            "StartRow": 0,
+            "EndRow": 764
+          }
+        },
+        "Projections": {
+          "9": {
+            "ProjectionId": 9,
+            "Name": "Stereographic KNMI Radar",
+            "Epsg": 100000,
+            "ProjectionString": "+proj=stere +lat_0=90 +lat_ts=60 +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378.14 +b=6356.75"
+          }
+        },
+        "Extents": {
+          "1": {
+            "Xll": 0.0,
+            "Yll": -4414.985672,
+            "Xur": 700.00245,
+            "Yur": -3649.982,
+            "SpatialReference": {
+              "ProjectionId": 9,
+              "Name": "Stereographic KNMI Radar",
+              "Epsg": 100000,
+              "ProjectionString": "+proj=stere +lat_0=90 +lat_ts=60 +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378.14 +b=6356.75"
+            }
+          }
+        }
+      },
+      "content_type": "application/json"
     }
   },
   {
@@ -56,7 +186,9 @@
               },
               "StartDate": "20240930080000",
               "EndDate": "20241003080000",
-              "VariableCodes": ["P"]
+              "VariableCodes": [
+                "P"
+              ]
             }
           }
         ],
@@ -67,7 +199,10 @@
     },
     "expected": {
       "status": 200,
-      "body_contains": ""
+      "body_contains": "<netcdf4_file>",
+      "expected_response": "<netcdf4_file>",
+      "expected_filesize": 2036265,
+      "content_type": "application/x-netcdf"
     }
   },
   {
@@ -89,8 +224,12 @@
                 "Value": 21600
               },
               "ModelDate": "20250527000000",
-              "VariableCodes": ["TMP"],
-              "LocationCodes": ["06252"]
+              "VariableCodes": [
+                "TMP"
+              ],
+              "LocationCodes": [
+                "06252"
+              ]
             }
           }
         ],
@@ -104,7 +243,10 @@
     },
     "expected": {
       "status": 200,
-      "body_contains": ""
+      "body_contains": "<csv>",
+      "expected_response": "<csv>",
+      "content_type": "text/csv",
+      "csv_column_names": ["Date time","Location code", "Variable code","Value","Quality","Availability","Ensemble"]
     }
   },
   {
@@ -127,8 +269,12 @@
             "Settings": {
               "StartDate": "20241001230000",
               "EndDate": "20241002230000",
-              "VariableCodes": ["Evaporation"],
-              "LocationCodes": ["06260"],
+              "VariableCodes": [
+                "Evaporation"
+              ],
+              "LocationCodes": [
+                "06260"
+              ],
               "ReadQuality": false
             }
           }
@@ -143,7 +289,10 @@
     },
     "expected": {
       "status": 200,
-      "body_contains": ""
+      "body_contains": "<csv>",
+      "expected_response": "<csv>",
+      "content_type": "text/csv",
+      "csv_column_names": ["Date time", "Location code", "Variable code", "Value", "Quality", "Availability"]
     }
   }
 ]
