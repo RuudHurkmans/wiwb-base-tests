@@ -1,0 +1,379 @@
+{
+  "info": {
+    "_postman_id": "a21056c4-47e4-4ad0-81cb-c351cb5cc183",
+    "name": "WIWB1 FEWS API Tests",
+    "description": "Generated Postman collection for WIWB API testing. Uses Postman's built-in OAuth 2.0 authorization. Make sure to set your client_id and client_secret in the collection variables.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "auto-generated"
+  },
+  "item": [
+    {
+      "name": "Get Variables for Knmi.International.Radar.Composite.Final.Reanalysis",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/entity/datasourcevariables/get",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "entity",
+            "datasourcevariables",
+            "get"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"DataSourceCodes\": [\n    \"Knmi.International.Radar.Composite.Final.Reanalysis\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Auto-generated test script from test case expectations",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function () {",
+              "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'DataSourceVariables'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('DataSourceVariables');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'Variables'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('Variables');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'Units'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('Units');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'DataSources'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('DataSources');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'TimeZoneOffset'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('TimeZoneOffset');",
+              "});",
+              "",
+              "pm.test(\"Response is valid JSON\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Grid Definition by ID",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/entity/griddefinitions/get",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "entity",
+            "griddefinitions",
+            "get"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"GridDefinitionIds\": [\n    1\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Auto-generated test script from test case expectations",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function () {",
+              "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'GridDefinitions'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('GridDefinitions');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'Projections'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('Projections');",
+              "});",
+              "",
+              "pm.test(\"Response body contains 'Extents'\", function () {",
+              "    pm.expect(pm.response.text()).to.include('Extents');",
+              "});",
+              "",
+              "pm.test(\"Response is valid JSON\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Grids for Knmi.International.Radar.Composite.Final.Reanalysis",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/grids/get",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "grids",
+            "get"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Readers\": [\n    {\n      \"DataSourceCode\": \"Knmi.International.Radar.Composite.Final.Reanalysis\",\n      \"Settings\": {\n        \"Interval\": {\n          \"Type\": \"Seconds\",\n          \"Value\": 86400,\n          \"MinimumAggregationAvailability\": 1.0\n        },\n        \"StartDate\": \"20240930080000\",\n        \"EndDate\": \"20241003080000\",\n        \"VariableCodes\": [\n          \"P\"\n        ]\n      }\n    }\n  ],\n  \"Exporter\": {\n    \"DataFormatCode\": \"netcdf4.cf1p6\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Test script skipped for special response type: <netcdf4_file>",
+              "// Postman cannot validate binary/special format responses like <netcdf4_file>",
+              "",
+              "// Only basic status code check is performed",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Ensemble Time Series for Knmi.RegionalEps",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/ensembletimeseries/get",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ensembletimeseries",
+            "get"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Readers\": [\n    {\n      \"DataSourceCode\": \"Knmi.RegionalEps\",\n      \"Settings\": {\n        \"Interval\": {\n          \"Type\": \"Seconds\",\n          \"Value\": 21600\n        },\n        \"ModelDate\": \"20250527000000\",\n        \"VariableCodes\": [\n          \"TMP\"\n        ],\n        \"LocationCodes\": [\n          \"06252\"\n        ]\n      }\n    }\n  ],\n  \"Exporter\": {\n    \"DataFormatCode\": \"hydronet.csv.simple\",\n    \"Settings\": {\n      \"DigitsToRound\": 3\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Test script skipped for special response type: <csv>",
+              "// Postman cannot validate binary/special format responses like <csv>",
+              "",
+              "// Only basic status code check is performed",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Timeseries for Knmi.Evaporation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/timeseries/get",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "timeseries",
+            "get"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Readers\": [\n    {\n      \"DataSourceCode\": \"Knmi.Evaporation\",\n      \"Interval\": {\n        \"Type\": \"Seconds\",\n        \"Value\": 86400\n      },\n      \"Settings\": {\n        \"StartDate\": \"20241001230000\",\n        \"EndDate\": \"20241002230000\",\n        \"VariableCodes\": [\n          \"Evaporation\"\n        ],\n        \"LocationCodes\": [\n          \"06260\"\n        ],\n        \"ReadQuality\": false\n      }\n    }\n  ],\n  \"Exporter\": {\n    \"DataFormatCode\": \"hydronet.csv.simple\",\n    \"Settings\": {\n      \"DigitsToRound\": 3\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Test script skipped for special response type: <csv>",
+              "// Postman cannot validate binary/special format responses like <csv>",
+              "",
+              "// Only basic status code check is performed",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://wiwb.hydronet.com",
+      "type": "string"
+    },
+    {
+      "key": "auth_url",
+      "value": "https://login.hydronet.com/auth/realms/hydronet/protocol/openid-connect/token",
+      "type": "string"
+    },
+    {
+      "key": "client_id",
+      "value": "YOUR_CLIENT_ID",
+      "type": "string"
+    },
+    {
+      "key": "client_secret",
+      "value": "YOUR_CLIENT_SECRET",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "tokenName",
+        "value": "WIWB Token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "{{auth_url}}",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "{{client_id}}",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "{{client_secret}}",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      },
+      {
+        "key": "headerPrefix",
+        "value": "Bearer",
+        "type": "string"
+      },
+      {
+        "key": "client_authentication",
+        "value": "body",
+        "type": "string"
+      }
+    ]
+  }
+}
