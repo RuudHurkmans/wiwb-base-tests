@@ -2181,14 +2181,18 @@
       "body_contains": "<csv>",
       "expected_response": "<csv>",
       "content_type": "text/csv",
-      "csv_column_names": [
-        "Date time",
-        "Location code",
-        "Variable code",
-        "Value",
-        "Quality",
-        "Availability"
-      ]
+      "csv_column_names": {
+        "Variables": [
+          "Code",
+          "Name",
+          "Unit"
+        ],
+        "Locations": ["Code","Name","X","Y","Z","EPSG"],
+        "Time": ["UTC time zone offset","","Start date","End date"],
+        "Data": [
+          "Date time","Location code","Variable code","Value","Quality","Availability"
+        ]
+      }
     },
     "request_note": "hydronet.csv.simple will return an actual csv file but hydronet.csv will return a file containing multiple csv's in one file, see parsing logic in "
   },
@@ -4812,10 +4816,7 @@
     "expected": {
       "status": 200,
       "body_contains": [
-        "LocationCode",
-        "Projections",
-        "DataSourceGroups",
-        "TagTypes"
+        "Locations"
       ],
       "content_type": "application/json",
       "expected_response": {
