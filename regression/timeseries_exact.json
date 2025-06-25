@@ -1,0 +1,295 @@
+[
+    {
+        "name": "AWS Ten Minutes P",
+        "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/timeseries/get",
+            "headers": {
+                "Authorization": "Bearer {{token}}",
+                "Content-Type": "application/json"
+            },
+            "json": {
+                "Readers": [
+                    {
+                        "DataSourceCode": "Knmi.AwsTenMinutes",
+                        "Settings": {
+                            "LocationCodes": [
+                                "06330"
+                            ],
+                            "VariableCodes": [
+                                "AirPressure",
+                                "WindDirection"
+                            ],
+                            "StartDate": "20230526000000",
+                            "EndDate": "20230526020000"
+                        }
+                    }
+                ]
+            }
+        },
+        "expected": {
+            "status": 200,
+            "body_contains": [
+                "Data",
+                "Meta",
+                "StructureType"
+            ],
+            "expected_response": {
+                "Data": [
+                    {
+                        "LocationIdentifier": "Knmi.Synops#06330",
+                        "LocationCode": "06330",
+                        "UseQuality": false,
+                        "Data": [
+                            {
+                                "Value": 1030.24,
+                                "Availability": 1,
+                                "DateTime": "20230526001000"
+                            },
+                            {
+                                "Value": 1030.34,
+                                "Availability": 1,
+                                "DateTime": "20230526002000"
+                            },
+                            {
+                                "Value": 1030.44,
+                                "Availability": 1,
+                                "DateTime": "20230526003000"
+                            },
+                            {
+                                "Value": 1030.44,
+                                "Availability": 1,
+                                "DateTime": "20230526004000"
+                            },
+                            {
+                                "Value": 1030.44,
+                                "Availability": 1,
+                                "DateTime": "20230526005000"
+                            },
+                            {
+                                "Value": 1030.44,
+                                "Availability": 1,
+                                "DateTime": "20230526010000"
+                            },
+                            {
+                                "Value": 1030.44,
+                                "Availability": 1,
+                                "DateTime": "20230526011000"
+                            },
+                            {
+                                "Value": 1030.54,
+                                "Availability": 1,
+                                "DateTime": "20230526012000"
+                            },
+                            {
+                                "Value": 1030.64,
+                                "Availability": 1,
+                                "DateTime": "20230526013000"
+                            },
+                            {
+                                "Value": 1030.64,
+                                "Availability": 1,
+                                "DateTime": "20230526014000"
+                            },
+                            {
+                                "Value": 1030.64,
+                                "Availability": 1,
+                                "DateTime": "20230526015000"
+                            },
+                            {
+                                "Value": 1030.64,
+                                "Availability": 1,
+                                "DateTime": "20230526020000"
+                            }
+                        ],
+                        "NoDataValue": -9999.0,
+                        "StartDate": "20230526000000",
+                        "EndDate": "20230526020000",
+                        "DataType": "Single",
+                        "Interval": {
+                            "Type": "Minutes",
+                            "Value": 10.0
+                        },
+                        "SlideInterval": {
+                            "Type": "Undefined",
+                            "Value": 0.0
+                        },
+                        "IsSlidingWindow": false,
+                        "IsTotal": false,
+                        "VariableCode": "AirPressure",
+                        "DataSourceVariableId": 2460,
+                        "TimeZoneOffset": "+0000",
+                        "IsCumulative": false,
+                        "CalculationType": "Average"
+                    },
+                    {
+                        "LocationIdentifier": "Knmi.Synops#06330",
+                        "LocationCode": "06330",
+                        "UseQuality": false,
+                        "Data": [
+                            {
+                                "Value": 45.5,
+                                "Availability": 1,
+                                "DateTime": "20230526001000"
+                            },
+                            {
+                                "Value": 44.3,
+                                "Availability": 1,
+                                "DateTime": "20230526002000"
+                            },
+                            {
+                                "Value": 43.4,
+                                "Availability": 1,
+                                "DateTime": "20230526003000"
+                            },
+                            {
+                                "Value": 44.8,
+                                "Availability": 1,
+                                "DateTime": "20230526004000"
+                            },
+                            {
+                                "Value": 48.7,
+                                "Availability": 1,
+                                "DateTime": "20230526005000"
+                            },
+                            {
+                                "Value": 55.1,
+                                "Availability": 1,
+                                "DateTime": "20230526010000"
+                            },
+                            {
+                                "Value": 54.5,
+                                "Availability": 1,
+                                "DateTime": "20230526011000"
+                            },
+                            {
+                                "Value": 52.9,
+                                "Availability": 1,
+                                "DateTime": "20230526012000"
+                            },
+                            {
+                                "Value": 51.7,
+                                "Availability": 1,
+                                "DateTime": "20230526013000"
+                            },
+                            {
+                                "Value": 48.7,
+                                "Availability": 1,
+                                "DateTime": "20230526014000"
+                            },
+                            {
+                                "Value": 44.6,
+                                "Availability": 1,
+                                "DateTime": "20230526015000"
+                            },
+                            {
+                                "Value": 44.5,
+                                "Availability": 1,
+                                "DateTime": "20230526020000"
+                            }
+                        ],
+                        "NoDataValue": -9999.0,
+                        "StartDate": "20230526000000",
+                        "EndDate": "20230526020000",
+                        "DataType": "Single",
+                        "Interval": {
+                            "Type": "Minutes",
+                            "Value": 10.0
+                        },
+                        "SlideInterval": {
+                            "Type": "Undefined",
+                            "Value": 0.0
+                        },
+                        "IsSlidingWindow": false,
+                        "IsTotal": false,
+                        "VariableCode": "WindDirection",
+                        "DataSourceVariableId": 2457,
+                        "TimeZoneOffset": "+0000",
+                        "IsCumulative": false,
+                        "CalculationType": "Average"
+                    }
+                ],
+                "Meta": {
+                    "Locations": {
+                        "06330": {
+                            "Identifier": "Knmi.Synops#06330",
+                            "LocationId": 1968,
+                            "Name": "HOEK VAN HOLLAND AWS",
+                            "Code": "06330",
+                            "X": 4.12185,
+                            "Y": 51.99094,
+                            "Z": 13.0,
+                            "Tags": [],
+                            "ProjectionId": 3,
+                            "DataSourceGroupCode": "Knmi.Synops"
+                        }
+                    },
+                    "Variables": {
+                        "AirPressure": {
+                            "Name": "Air Pressure",
+                            "Code": "AirPressure",
+                            "UnitCode": "hPa",
+                            "State": 1
+                        },
+                        "WindDirection": {
+                            "Name": "Wind Direction",
+                            "Code": "WindDirection",
+                            "UnitCode": "deg",
+                            "State": 1
+                        }
+                    },
+                    "DataSourceVariables": {
+                        "2460": {
+                            "DataSourceVariableId": 2460,
+                            "VariableCode": "AirPressure",
+                            "DataSourceCode": "Knmi.AwsTenMinutes",
+                            "UnitCode": "hPa",
+                            "Name": "Air Pressure at Station Level",
+                            "Code": "p0",
+                            "DataType": "Single",
+                            "MathematicalType": "NotSummable",
+                            "MeasurementType": "Period",
+                            "State": 1,
+                            "IsCumulative": false
+                        },
+                        "2457": {
+                            "DataSourceVariableId": 2457,
+                            "VariableCode": "WindDirection",
+                            "DataSourceCode": "Knmi.AwsTenMinutes",
+                            "UnitCode": "deg",
+                            "Name": "Wind Direction",
+                            "Code": "dd",
+                            "DataType": "Single",
+                            "MathematicalType": "NotSummable",
+                            "MeasurementType": "Period",
+                            "State": 1,
+                            "IsCumulative": false
+                        }
+                    },
+                    "Projections": {
+                        "3": {
+                            "ProjectionId": 3,
+                            "Name": "WGS84",
+                            "Epsg": 4326,
+                            "ProjectionString": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs "
+                        }
+                    },
+                    "Units": {
+                        "hPa": {
+                            "Name": "hPa",
+                            "Code": "hPa",
+                            "ParentUnit": null
+                        },
+                        "deg": {
+                            "Name": "degrees",
+                            "Code": "deg",
+                            "ParentUnit": null
+                        }
+                    }
+                },
+                "StructureType": "TimeSeries"
+            },
+            "parse_exact": true
+        }
+    }
+]
